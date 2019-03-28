@@ -21,6 +21,6 @@ $("#search").on("click", function(event) {
 
         var results = response.data;
 
-        console.log(respons.hits[0].recipe.lable)
+        // console.log(respons.hits[0].recipe.lable)
     })
 })
