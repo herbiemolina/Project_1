@@ -3,13 +3,13 @@ display: block;
   padding: 10px;
   margin: 10px;
   text-align: center;
-  background: orange;
+  background:rgb(187,209,26);
   font-display: Times;
   font-size: 50px;
   font: bolder;
   font-family: cursive;
   border: 5px solid gray;
-
+  animation-timing-function: ease-in-out;
 }
 
 h1{
@@ -17,11 +17,13 @@ h1{
   padding: 10px;
   margin: 10px;
   text-align: center;
-  background: orange;
+  background:rgb(187,209,26);
   font-display: Times;
   font-size: 30px;
   font: bolder;
   border: 5px solid gray;
+  opacity: 0.8;
+  filter: alpha(opacity=50);
 
 }
 h2 {
@@ -36,8 +38,10 @@ h2 {
     margin: 10px;
     text-align: center;
     border: 5px solid gray;
-    background: orange;
+    background: rgb(187,209,26);
     height: 550px;
+    opacity: 0.8;
+    filter: alpha(opacity=50);
   }
 
  section {
@@ -52,11 +56,13 @@ h2 {
     margin: 10px;
     text-align: center;
     border: 5px solid gray;
-    background: orange;
+    background: rgb(187,209,26);
     height: 550px;
     float: left; 
     font-size: 30px;
     text-emphasis: bolder;
+    opacity: 0.8;
+    filter: alpha(opacity=50);
  }
 
  body {
@@ -65,4 +71,11 @@ background-image:url(../assets/image/bb-recipe-ia-hero.png);
 
  .button1{
     font-size: 12px;
+ }
+
+ div.numRecipes{
+    position: absolute;
+    bottom: 10px;
+    width: 50%;
+    border: 3px solid #8AC007;
  }
