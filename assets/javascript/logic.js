@@ -1,20 +1,27 @@
-
 $("#search").on("click", function(event) {
-    event.preventDefault();
-    
-    var query = $("#ingredient-input").val().trim();
-    console.log(query);
+  event.preventDefault();
 
-    var queryURL = "https://api.edamam.com/search?q=" +
-    query + "&app_id=64760290&app_key=b202394ba44a6ecd22f361ca5ed5bbde";
+  var query = $("#ingredient-input")
+    .val()
+    .trim();
+  console.log(query);
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response) {
-        console.log(queryURL);
-        console.log(response);
+  var queryURL =
+    "https://api.edamam.com/search?q=" +
+    query +
+    "&app_id=64760290&app_key=b202394ba44a6ecd22f361ca5ed5bbde";
 
-        var results = response.data;
-    })
-})
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(queryURL);
+    console.log(response);
+
+    var results = response.data;
+  });
+});
+
+$(window).on("load", function() {
+  $("#select-ingredients").modal("show");
+});
