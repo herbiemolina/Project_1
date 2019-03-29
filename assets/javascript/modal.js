@@ -5,15 +5,9 @@ var ingredients = [];
 
 var defaultIngredients = ['chicken', 'beef', 'cheese', 'salmon'];
 var searchItems = [];
-// const defaultImage = "./assets/images/groceries.jpg";  // this isn't working
+const defaultImage = "./assets/images/groceries.png";  // this isn't working
 
-$("#open-select-ingredients").on("click", function(e) {
-  e.preventDefault();
-  createIngredientChoices();
-})
-
-
- /**
+/**
  * When an item in the selected items list is clicked, remove it from the searchItems array and update the list
  */
 $(document).on("click", ".selected-item", function() {
@@ -46,7 +40,10 @@ $(document).on("click", ".single-option", function() {
 
      if (ingredients[i].image !== "") {
        try {
-         foodImage = `<img id="ingredient-${i}" class="ingredient-option-image"  src=${ingredients[i].image} >`
+         foodImage = `<img id="ingredient-${i}"
+          class="ingredient-option-image"
+          src=${ingredients[i].image}
+          onerror="this.src='${defaultImage}'" >`
        } catch {
          foodImage = "";
        }
@@ -129,6 +126,7 @@ $(document).on("click", ".single-option", function() {
   $(document).ready(() =>{
     defaultIngredients.forEach((item) => {
       ingredients.push(createIngredientObject(item))
+      createIngredientChoices();
     })    
 
   })
