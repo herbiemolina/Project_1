@@ -1,0 +1,8 @@
+body {
+  background-image: url(../images/what-the-hex.png);
+  /* background-color: #cccccc; */
+}
+
+.container-fluid {
+  padding: 10px 60px;
+}
