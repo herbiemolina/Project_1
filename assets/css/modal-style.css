@@ -1,0 +1,62 @@
+.modal-header {
+  background-color: rgb(51, 76, 143);
+  color: white;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-content {
+  background-color: rgba(236, 214, 151, 0.973) !important;
+  height: 600px;
+}
+
+.modal-dialog {
+  max-width: 75%;
+}
+
+.ingredient-options {
+}
+
+.ingredient-selected {
+}
+
+#ingredient-options {
+  flex-wrap: wrap;
+  height: 450px;
+  overflow-y: auto;
+}
+
+#selected-title {
+  font-size: 26px;
+  text-align: center;
+}
+
+/* Styling for ingredient inside frame */
+.ingredient-frame {
+  background-color: rgba(51, 76, 143, 0.644);
+  height: 100px;
+  width: 120px;
+}
+
+.ingredient-option-image {
+  width:  80px;
+  height: 80px;
+  display: block;
+  margin: auto;
+  padding-bottom: 1em;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  border-radius: 15px;
+}
+
+.ingredient-name {
+  color: white;
+  padding: 3px;
+}
+
+#search-api {
+  background-color: rgb(51, 76, 143);
+  margin-top: 8px;
+}
