@@ -1,0 +1,68 @@
+header{
+  display: block;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    background: orange;
+    font-display: Times;
+    font-size: 50px;
+    font: bolder;
+    font-family: cursive;
+    border: 5px solid gray;
+  
+  }
+  
+  h1{
+      display: block;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    background: orange;
+    font-display: Times;
+    font-size: 30px;
+    font: bolder;
+    border: 5px solid gray;
+  
+  }
+  h2 {
+      display: block;
+      float: right;
+      width: 40%;
+      height: 267px;
+      overflow: hidden;
+      outline: black;
+      display: block;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      border: 5px solid gray;
+      background: orange;
+      height: 550px;
+    }
+  
+   section {
+      display: block;
+      float: left;
+      width: 40%;
+      height: 267px;
+      overflow: hidden;
+      outline: black;
+      display: block;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      border: 5px solid gray;
+      background: orange;
+      height: 550px;
+      float: left; 
+      font-size: 30px;
+      text-emphasis: bolder;
+   }
+  
+   body {
+  background-image:url(../assets/image/bb-recipe-ia-hero.png);
+   }
+  
+   .button1{
+      font-size: 12px;
+   }
