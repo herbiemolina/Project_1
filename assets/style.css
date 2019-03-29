@@ -9,7 +9,7 @@ display: block;
   font: bolder;
   font-family: cursive;
   border: 5px solid gray;
-
+  animation-timing-function: ease-in-out;
 }
 
 h1{
