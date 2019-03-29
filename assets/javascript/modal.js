@@ -43,14 +43,29 @@ $("#open-select-ingredients").on("click", function(e) {
   createIngredientChoices();
 })
 
+
+ /**
+ * When an item in the selected items list is clicked, remove it from the searchItems array and update the list
+ */
+$(document).on("click", ".selected-item", function() {
+  let food = $(this).attr("food-item");
+  let index = searchItems.indexOf(food);
+  searchItems.splice(index,1);
+  updateSelectedItemsList();
+})
+
+/**
+ * When an item is clicked, add it to the searchItems array and update the selected items list
+ */
 $(document).on("click", ".single-option", function() {
 
   let food = $(this).attr("food-item");
   if (!searchItems.includes(food)) {
     searchItems.push(food);
+    updateSelectedItemsList();
   }
-  // console.log(food);
 })
+
   /*
   * Creates clickable images and puts them in the ingredients-options box
   */
@@ -68,3 +83,22 @@ $(document).on("click", ".single-option", function() {
  }
 
   // ====================================
+  const updateSelectedItemsList = () => {
+    const $selectedList = $("#selected-list");
+    $selectedList.empty();  // clear out current list
+    if (searchItems) {
+      let $listGroup = $selectedList.append("<div>").addClass("list-group");
+      for (i=0; i<searchItems.length; i++) {
+        $listGroup.append(`<button type="button" class="list-group-item list-group-item-action selected-item" food-item="${searchItems[i]}">${searchItems[i]}</button>`);
+      }
+    }
+
+  }
+
+  // Set this up to do the API search, and display on main view
+  $("#search-api").on("click", function() {
+    alert(`Search the api for:  ` + searchItems);
+    $("#select-ingredients").modal('hide');
+  })
+
+
