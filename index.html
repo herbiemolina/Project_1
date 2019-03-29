@@ -2,15 +2,47 @@
 <html lang="en-us">
 
 <head>
+
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/style.css">
   <link rel="stylesheet" href="./assets/css/modal-style.css">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
+    <header>
+        <p>Recipe Search</p>
+    </header>
+
+
+    <h1>
+        <p>Favorite ingredient</p>
+        <label class="btns">
+            <button id="search1">chicken</button>
+            <button id="search2">Beef</button>
+            <button id="search3">Noodles</button>
+        </label>
+        <!--search bar-->
+        <form id="ingredient">
+            <label for="main-ingredient-input">Search ingredient</label>
+            <input type="text" id="main-ingredient-input">
+            <br>
+            <button id="search">Submit</button>
+        </form>
+
+    </h1>
+    <h2>
+        <heading>
+            <p>Selected ingredients</p>
+        </heading>
+    </h2>
+    <section>
+        <p>Recipe Display Region</p>
+    </section>
+    <script src="assets/logic.js"></script>
 
   <!--search bar-->
   <form id="ingredient">
