@@ -1,48 +1,14 @@
 // temporary data to play with
 
-const ingredients_old = [
-  {
-    image: "./assets/images/gem_1.png",
-    name: "chicken",
-  },
-  {
-    image: "./assets/images/gem_2.png",
-    name: "beef",
-  },
-  {
-    image: "./assets/images/gem_3.png",
-    name: "salmon",
-  },
-  {
-    image: "./assets/images/gem_4.png",
-    name: "carrots",
-  },
-  {
-    image: "./assets/images/gem_5.png",
-    name: "penne",
-  },
-  {
-    image: "./assets/images/gem_1.png",
-    name: "peanut butter",
-  },
-  {
-    image: "./assets/images/gem_2.png",
-    name: "cheese",
-  },
-  {
-    image: "./assets/images/gem_3.png",
-    name: "green beans",
-  },
-];
 
 var ingredients = [];
 
 var defaultIngredients = ['chicken', 'beef', 'cheese', 'salmon'];
 var searchItems = [];
+// const defaultImage = "./assets/images/groceries.jpg";  // this isn't working
 
 $("#open-select-ingredients").on("click", function(e) {
   e.preventDefault();
-  // show default images
   createIngredientChoices();
 })
 
@@ -79,9 +45,11 @@ $(document).on("click", ".single-option", function() {
    for (let i = 0; i < ingredients.length; i++) {
 
      if (ingredients[i].image !== "") {
-       foodImage = `<img id="ingredient-${i}" class="ingredient-option-image"  src=${ingredients[i].image}>`
-     } else {
-       foodImage = "";
+       try {
+         foodImage = `<img id="ingredient-${i}" class="ingredient-option-image"  src=${ingredients[i].image} >`
+       } catch {
+         foodImage = "";
+       }
      }
 
     $('#ingredient-options').append(`<div id="ingredient-${i}" class="m-1 float-left ingredient-frame">
@@ -114,12 +82,8 @@ $(document).on("click", ".single-option", function() {
   $("#add-ingredient").on("click", (e) => {
     e.preventDefault();
     var subject = $("#new-ingredient-input").val().trim();
-    console.log(subject);
-    // if (subject !== "" && !ingredients["name"].includes(subject)) {
     if (subject !== "" && !ingredientExists(subject)) {
       ingredients.push(createIngredientObject(subject))
-      // defaultIngredients.push(subject);
-      // createIngredientObjectArray();
       createIngredientChoices();
     }
     $("#new-ingredient-input").val('');    // clear input field
@@ -129,12 +93,8 @@ $(document).on("click", ".single-option", function() {
   function ingredientExists(item) {
 
     var index = ingredients.filter((obj) => {
-      console.log(obj.name);
-      console.log(item);
       return obj.name === item;
     })
-
-    console.log(index.length);
     if (index.length > 0) {
       return true;
     } else {
@@ -152,14 +112,23 @@ $(document).on("click", ".single-option", function() {
   }
 
   function getIngredientImage(food) {
-    var thing = `https://www.themealdb.com/images/ingredients/${food}.png`;
-    console.log(thing);
-    return thing
+    let findImage;
+    try {
+      findImage = `https://www.themealdb.com/images/ingredients/${food}.png`;
+    } catch {
+      findImage = '';
+    }
+    return findImage
   }
+
+  // this isn't working
+  // $(document).on("error", ".ingredient-option-image", function()    {
+  //   $(this).attr('src', defaultImage);
+  // });
 
   $(document).ready(() =>{
     defaultIngredients.forEach((item) => {
       ingredients.push(createIngredientObject(item))
     })    
-    // createIngredientObjectArray();
+
   })
