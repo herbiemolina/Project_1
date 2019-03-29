@@ -71,14 +71,22 @@ $(document).on("click", ".single-option", function() {
   */
  const createIngredientChoices = () => {
    let $ingredientOptions = $('#ingredient-options');
-   $ingredientOptions.empty()
+   $ingredientOptions.empty();
+   let foodImage = "";
+
    for (let i = 0; i < ingredients.length; i++) {
+
+     if (ingredients[i].image !== "") {
+       foodImage = `<img id="ingredient-${i}" class="ingredient-option-image"  src=${ingredients[i].image}>`
+     } else {
+       foodImage = "";
+     }
+
     $('#ingredient-options').append(`<div id="ingredient-${i}" class="m-1 float-left ingredient-frame">
       <div class="single-option" food-item="${ingredients[i].name}">
         <div class="text-center ingredient-name">${ingredients[i].name}</div>
-        <img id="ingredient-${i}" class="ingredient-option-image"  src=${ingredients[i].image}>
-      </div>
-    </div>`);
+        ${foodImage}
+      </div>`);
    }
  }
 
@@ -101,4 +109,37 @@ $(document).on("click", ".single-option", function() {
     $("#select-ingredients").modal('hide');
   })
 
+// On click of add ingredient button
+  $("#add-ingredient").on("click", (e) => {
+    e.preventDefault();
+    var subject = $("#new-ingredient-input").val().trim();
+    console.log(subject);
+    // if (subject !== "" && !ingredients["name"].includes(subject)) {
+    if (subject !== "" && !ingredientExists(subject)) {
+      ingredients.push(
+        {
+          image: "",
+          name: subject,
+        },
+      );
+      createIngredientChoices();
+    }
+    $("#new-ingredient-input").val('');    // clear input field
+  })
 
+  // Returns true if ingredient exists in list, otherwise returns false
+  function ingredientExists(item) {
+
+    var index = ingredients.filter((obj) => {
+      console.log(obj.name);
+      console.log(item);
+      return obj.name === item;
+    })
+
+    console.log(index.length);
+    if (index.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
