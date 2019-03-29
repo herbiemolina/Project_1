@@ -1,11 +1,7 @@
 
-
-
-
 $("#search").on("click", function(event) {
     event.preventDefault();
     
-
     var query = $("#ingredient-input").val().trim();
     console.log(query);
 
