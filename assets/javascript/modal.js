@@ -1,6 +1,6 @@
 // temporary data to play with
 
-const ingredients = [
+const ingredients_old = [
   {
     image: "./assets/images/gem_1.png",
     name: "chicken",
@@ -35,6 +35,9 @@ const ingredients = [
   },
 ];
 
+var ingredients = [];
+
+var defaultIngredients = ['chicken', 'beef', 'cheese', 'salmon'];
 var searchItems = [];
 
 $("#open-select-ingredients").on("click", function(e) {
@@ -73,7 +76,6 @@ $(document).on("click", ".single-option", function() {
    let $ingredientOptions = $('#ingredient-options');
    $ingredientOptions.empty();
    let foodImage = "";
-
    for (let i = 0; i < ingredients.length; i++) {
 
      if (ingredients[i].image !== "") {
@@ -100,7 +102,6 @@ $(document).on("click", ".single-option", function() {
         $listGroup.append(`<button type="button" class="list-group-item list-group-item-action selected-item" food-item="${searchItems[i]}">${searchItems[i]}</button>`);
       }
     }
-
   }
 
   // Set this up to do the API search, and display on main view
@@ -116,12 +117,9 @@ $(document).on("click", ".single-option", function() {
     console.log(subject);
     // if (subject !== "" && !ingredients["name"].includes(subject)) {
     if (subject !== "" && !ingredientExists(subject)) {
-      ingredients.push(
-        {
-          image: "",
-          name: subject,
-        },
-      );
+      ingredients.push(createIngredientObject(subject))
+      // defaultIngredients.push(subject);
+      // createIngredientObjectArray();
       createIngredientChoices();
     }
     $("#new-ingredient-input").val('');    // clear input field
@@ -143,3 +141,25 @@ $(document).on("click", ".single-option", function() {
       return false;
     }
   }
+
+  function createIngredientObject(item) {
+    return (
+      {
+        "name": item,
+        "image": getIngredientImage(item),
+      }
+    )
+  }
+
+  function getIngredientImage(food) {
+    var thing = `https://www.themealdb.com/images/ingredients/${food}.png`;
+    console.log(thing);
+    return thing
+  }
+
+  $(document).ready(() =>{
+    defaultIngredients.forEach((item) => {
+      ingredients.push(createIngredientObject(item))
+    })    
+    // createIngredientObjectArray();
+  })
