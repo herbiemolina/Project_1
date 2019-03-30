@@ -1,11 +1,8 @@
-// temporary data to play with
-
-
 var ingredients = [];
 
 var defaultIngredients = ['chicken', 'beef', 'cheese', 'salmon'];
 var searchItems = [];
-const defaultImage = "./assets/images/groceries.png";  // this isn't working
+const defaultImage = "./assets/images/groceries.png"; 
 
 /**
  * When an item in the selected items list is clicked, remove it from the searchItems array and update the list
@@ -57,14 +54,13 @@ $(document).on("click", ".single-option", function() {
    }
  }
 
-  // ====================================
   const updateSelectedItemsList = () => {
     const $selectedList = $("#selected-list");
     $selectedList.empty();  // clear out current list
     if (searchItems) {
       let $listGroup = $selectedList.append("<div>").addClass("list-group");
       for (i=0; i<searchItems.length; i++) {
-        $listGroup.append(`<button type="button" class="list-group-item list-group-item-action selected-item" food-item="${searchItems[i]}">${searchItems[i]}</button>`);
+        $listGroup.append(`<button type="button" class="list-group-item list-group-item-action w-50 mx-auto text-center py-1 selected-item" food-item="${searchItems[i]}">${searchItems[i]}</button>`);
       }
     }
   }
@@ -117,11 +113,6 @@ $(document).on("click", ".single-option", function() {
     }
     return findImage
   }
-
-  // this isn't working
-  // $(document).on("error", ".ingredient-option-image", function()    {
-  //   $(this).attr('src', defaultImage);
-  // });
 
   $(document).ready(() =>{
     defaultIngredients.forEach((item) => {
