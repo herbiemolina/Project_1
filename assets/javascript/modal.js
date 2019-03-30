@@ -65,9 +65,10 @@ $(document).on("click", ".single-option", function() {
     }
   }
 
-  // Set this up to do the API search, and display on main view
+  // Do the AJAX call to get recipes. Initially set it to find 6 recipes
   $("#search-api").on("click", function() {
-    alert(`Search the api for:  ` + searchItems);
+    getRecipes(searchItems, 6);
+    // maybe store the recipes locally????
     $("#select-ingredients").modal('hide');
   })
 
