@@ -1,50 +1,10 @@
-// temporary data to play with
+var ingredients = [];
 
-const ingredients = [
-  {
-    image: "./assets/images/gem_1.png",
-    name: "chicken",
-  },
-  {
-    image: "./assets/images/gem_2.png",
-    name: "beef",
-  },
-  {
-    image: "./assets/images/gem_3.png",
-    name: "salmon",
-  },
-  {
-    image: "./assets/images/gem_4.png",
-    name: "carrots",
-  },
-  {
-    image: "./assets/images/gem_5.png",
-    name: "penne",
-  },
-  {
-    image: "./assets/images/gem_1.png",
-    name: "peanut butter",
-  },
-  {
-    image: "./assets/images/gem_2.png",
-    name: "cheese",
-  },
-  {
-    image: "./assets/images/gem_3.png",
-    name: "green beans",
-  },
-];
-
+var defaultIngredients = ['chicken', 'beef', 'cheese', 'salmon'];
 var searchItems = [];
+const defaultImage = "./assets/images/groceries.png"; 
 
-$("#open-select-ingredients").on("click", function(e) {
-  e.preventDefault();
-  // show default images
-  createIngredientChoices();
-})
-
-
- /**
+/**
  * When an item in the selected items list is clicked, remove it from the searchItems array and update the list
  */
 $(document).on("click", ".selected-item", function() {
@@ -73,13 +33,17 @@ $(document).on("click", ".single-option", function() {
    let $ingredientOptions = $('#ingredient-options');
    $ingredientOptions.empty();
    let foodImage = "";
-
    for (let i = 0; i < ingredients.length; i++) {
 
      if (ingredients[i].image !== "") {
-       foodImage = `<img id="ingredient-${i}" class="ingredient-option-image"  src=${ingredients[i].image}>`
-     } else {
-       foodImage = "";
+       try {
+         foodImage = `<img id="ingredient-${i}"
+          class="ingredient-option-image"
+          src=${ingredients[i].image}
+          onerror="this.src='${defaultImage}'" >`
+       } catch {
+         foodImage = "";
+       }
      }
 
     $('#ingredient-options').append(`<div id="ingredient-${i}" class="m-1 float-left ingredient-frame">
@@ -90,22 +54,21 @@ $(document).on("click", ".single-option", function() {
    }
  }
 
-  // ====================================
   const updateSelectedItemsList = () => {
     const $selectedList = $("#selected-list");
     $selectedList.empty();  // clear out current list
     if (searchItems) {
       let $listGroup = $selectedList.append("<div>").addClass("list-group");
       for (i=0; i<searchItems.length; i++) {
-        $listGroup.append(`<button type="button" class="list-group-item list-group-item-action selected-item" food-item="${searchItems[i]}">${searchItems[i]}</button>`);
+        $listGroup.append(`<button type="button" class="list-group-item list-group-item-action w-50 mx-auto text-center py-1 selected-item" food-item="${searchItems[i]}">${searchItems[i]}</button>`);
       }
     }
-
   }
 
-  // Set this up to do the API search, and display on main view
+  // Do the AJAX call to get recipes. Initially set it to find 6 recipes
   $("#search-api").on("click", function() {
-    alert(`Search the api for:  ` + searchItems);
+    getRecipes(searchItems, 6);
+    // maybe store the recipes locally????
     $("#select-ingredients").modal('hide');
   })
 
@@ -113,15 +76,8 @@ $(document).on("click", ".single-option", function() {
   $("#add-ingredient").on("click", (e) => {
     e.preventDefault();
     var subject = $("#new-ingredient-input").val().trim();
-    console.log(subject);
-    // if (subject !== "" && !ingredients["name"].includes(subject)) {
     if (subject !== "" && !ingredientExists(subject)) {
-      ingredients.push(
-        {
-          image: "",
-          name: subject,
-        },
-      );
+      ingredients.push(createIngredientObject(subject))
       createIngredientChoices();
     }
     $("#new-ingredient-input").val('');    // clear input field
@@ -131,15 +87,38 @@ $(document).on("click", ".single-option", function() {
   function ingredientExists(item) {
 
     var index = ingredients.filter((obj) => {
-      console.log(obj.name);
-      console.log(item);
       return obj.name === item;
     })
-
-    console.log(index.length);
     if (index.length > 0) {
       return true;
     } else {
       return false;
     }
   }
+
+  function createIngredientObject(item) {
+    return (
+      {
+        "name": item,
+        "image": getIngredientImage(item),
+      }
+    )
+  }
+
+  function getIngredientImage(food) {
+    let findImage;
+    try {
+      findImage = `https://www.themealdb.com/images/ingredients/${food}.png`;
+    } catch {
+      findImage = '';
+    }
+    return findImage
+  }
+
+  $(document).ready(() =>{
+    defaultIngredients.forEach((item) => {
+      ingredients.push(createIngredientObject(item))
+      createIngredientChoices();
+    })    
+
+  })
