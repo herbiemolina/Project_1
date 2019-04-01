@@ -10,3 +10,8 @@ body {
 .modal-header {
   background-color: #e9ecef;
 }
+
+.modal-content {
+  padding-right: 30px;
+  padding-left: 30px;
+}
