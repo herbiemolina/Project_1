@@ -6,3 +6,7 @@ body {
 .container-fluid {
   padding: 10px 60px;
 }
+
+.modal-header {
+  background-color: #e9ecef;
+}

@@ -19,6 +19,7 @@
 
     <!-- Local CSS Stylesheet -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <title>Our Awesome Recipies</title>
   </head>
 
   <!-- Body Section -->
@@ -45,19 +46,11 @@
       </div>
 
       <!-- Bootstrap Modal -->
-      <div
-        class="modal fade"
-        id="select-ingredients"
-        data-backdrop="static"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLongTitle"
-        aria-hidden="true"
-      >
+      <div class="modal" id="select-ingredients" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title py-1 text-center">Select Ingredients</h5>
+              <h5 class="modal-title">Main Ingredients</h5>
               <button
                 type="button"
                 class="close"
@@ -67,51 +60,24 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-
             <div class="modal-body">
               <div class="row">
-                <div
-                  id="ingredient-options"
-                  class="col-md-8 px-3 ingredient-options"
-                ></div>
-                <div class="col-md-4 p-2 my-2 ingredient-selected">
-                  <h4 id="selected-title">Selected Items</h4>
-                  <div id="selected-list"></div>
-                  <button
-                    id="search-api"
-                    class="btn btn-primary d-block mx-auto"
-                    type="submit"
-                  >
-                    Search
-                  </button>
-                </div>
+                <p class="col border border-danger">
+                  Select the main ingredients you want to use in your recipe
+                  search. New ingedients may be added to the available options
+                  list. To remove an item from the list of ingredient choices,
+                  click on the item again.
+                </p>
               </div>
               <div class="row">
-                <div class="col-md-8">
-                  <div id="enter-ingredient" class="py-3">
-                    <form id="ingredient-form">
-                      <input
-                        id="add-ingredient"
-                        type="submit"
-                        value="Add Ingredient"
-                      />
-                      <input type="text" id="new-ingredient-input" /><br />
-                    </form>
-                  </div>
-                </div>
+                <div class="col-8 border border-danger">Fill</div>
+                <div class="col-4 border border-danger">Fill2</div>
               </div>
+              <!-- Ingredients to choose from go here -->
             </div>
           </div>
         </div>
       </div>
-      <!-- <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#select-ingredients"
-      >
-        Launch demo modal
-      </button> -->
     </div>
     <!-- Bootstrap JS CDN -->
 
@@ -133,6 +99,6 @@
     <script src="./assets/javascript/logic.js"></script>
     <script src="./assets/javascript/api.js"></script>
     <script src="./assets/javascript/modal.js"></script>
+    >
   </body>
-  <footer></footer>
 </html>
